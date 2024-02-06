@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const { username, password } = req.body;
-    const authenticate = await authenticateUser(username, password);
+    const authenticate = await authenticateUser(username.toLowerCase(), password);
 
     if (authenticate) {
       // Authentication successful, generate a JWT token
