@@ -30,7 +30,7 @@ const loadRoutes = (app) => {
       // console.log("Folder Name:", folderName);
       // console.log("Router Path:", routerPath);
       // console.log("Relative Path:", relativePath);
-      console.log("url Path:",routename );
+      console.log("url Path:",`API${routename}` );
 
       // Load the router if needed
       const router = require(routerPath);
