@@ -11,6 +11,7 @@ try {
             rejectUnauthorized: false, // Adjust based on your security requirements
         },
     });
+    console.log(`Database==>${process.env.DB_NAME}`);
 } catch (error) {
     console.error('Error creating the database pool:', error);
 }
