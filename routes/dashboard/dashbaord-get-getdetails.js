@@ -22,7 +22,7 @@ async function routeGet(req,res){
     await client.query('BEGIN');
 
     // Call the stored procedure
-    const rec = await client.query('CALL dashsp_get_dashbaord($1, $2,$3,$4)', [  output,output,output,output]);
+    const rec = await client.query('CALL dashsp_get_dashbaord($1, $2,$3,$4,$5)', [ req.auth.username ,output,output,output,output]);
     
     var rec2 = await client.query(`fetch all in "${rec.rows[0].result_cursor1}"`);
     dataObject.chart1.push(rec2.rows.map(row => {
