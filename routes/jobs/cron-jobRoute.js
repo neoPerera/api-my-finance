@@ -13,7 +13,7 @@ router.use(bodyParser.json());
 router.post("/", routeFunction);
 
 function routeFunction(req, res) {
-   
+   console.log("Cron job started");
   // socket.disconnect()
   res.status(200).json({ message: "Notification successful" });
 }
