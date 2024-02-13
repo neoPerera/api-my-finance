@@ -13,6 +13,7 @@ app.use(
     algorithms: ["HS256"],
   }).unless({ path: ["/api/login"] })
 );
+ 
 
 loadRouters(app);
 
