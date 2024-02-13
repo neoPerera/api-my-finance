@@ -11,7 +11,7 @@ app.use(
   jwt({
     secret: process.env.JWT_SECRET_KEY,
     algorithms: ["HS256"],
-  }).unless({ path: ["/api/login"] })
+  }).unless({ path: ["/api/login", "/api/jobs"] })
 );
  
 
