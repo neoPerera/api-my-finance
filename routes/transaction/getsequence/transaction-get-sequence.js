@@ -17,31 +17,34 @@ async function routeFunction(req, res) {
     try {
       // Begin the transaction
       const output = {};
+      const dataObject = {
+        sequence_id: "",
+        trans_types: [],
+        accounts: []
+      };
       await client.query("BEGIN");
 
       // Call the stored procedure
-      const rec = await client.query("CALL refsp_get_trn_sequence($1)", [
+      const rec = await client.query("CALL refsp_get_trn_sequence($1,$2,$3,$4)", [req.auth.username,output,output,
         output,
       ]);
 
-      // const rec2 = await client.query(
-      //   `fetch all in "${rec.rows[0].result_cursor}"`
-      // );
-      //console.log(rec2s);
-      // Access the result as needed
-      // const output_val = output;
+      const rec2 = await client.query(
+        `fetch all in "${rec.rows[0].result_cursor1}"`
+      );
+      dataObject.trans_types.push(rec2.rows);
+      const rec3 = await client.query(
+        `fetch all in "${rec.rows[0].result_cursor2}"`
+      );
+      dataObject.accounts.push(rec3.rows);
+      dataObject.sequence_id =rec.rows[0].output_value;
 
-      // Commit the transaction
+
       await client.query("COMMIT");
 
       // Send the forms as a response
-      const dataObject = {
-        sequence_id: "",
-        trans_types: []
-      };
-      dataObject.sequence_id =rec.rows[0].output_value;
-      dataObject.trans_types.push({value:"INC",label:"Income"});
-      dataObject.trans_types.push({value:"EXP",label:"Expense"});
+      
+      
       res.status(200).json(dataObject);
     } catch (error) {
       // Rollback the transaction on error
