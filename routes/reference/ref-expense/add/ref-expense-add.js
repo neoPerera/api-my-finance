@@ -1,7 +1,7 @@
 // ref-expense-add.js
 const express = require('express');
 const bodyParser = require('body-parser');
-const pool = require('./../../../Helpers/databaseHelper'); 
+const pool = require('./../../../../Helpers/databaseHelper'); 
 //const cors = require('cors');
 //app.use(cors);
 
@@ -21,7 +21,7 @@ async function routeFunction(req,res){
     await client.query("BEGIN");
 
     // Call the stored procedure
-    const rec = await client.query("CALL refsp_insert_accounts_master($1, $2,$3)", [req.body.strId, req.body.strName, req.auth.username]);
+    const rec = await client.query("CALL refsp_insert_expense_master($1, $2)", [req.body.strId, req.body.strName]);
 
     // const rec2 = await client.query(
     //   `fetch all in "${rec.rows[0].result_cursor}"`

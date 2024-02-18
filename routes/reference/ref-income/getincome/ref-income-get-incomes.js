@@ -1,7 +1,7 @@
 // homeRoute.js
 const express = require("express");
 const bodyParser = require("body-parser");
-const pool = require("./../../../Helpers/databaseHelper");
+const pool = require("../../../../Helpers/databaseHelper");
 require("dotenv").config();
 const router = express.Router();
 
@@ -15,7 +15,7 @@ async function routeFunction(req, res) {
     await client.query("BEGIN");
 
     // Call the stored procedure
-    const rec = await client.query("CALL refsp_get_exm_list($1)", [output]);
+    const rec = await client.query("CALL refsp_get_inc_list($1)", [output]);
 
     const rec2 = await client.query(
       `fetch all in "${rec.rows[0].result_cursor}"`
