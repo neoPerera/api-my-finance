@@ -62,22 +62,6 @@ async function routeFunction(req, res) {
   // });
   // socket.disconnect()
 
-  const mailOptions = {
-    from: 'me@chanuthperera.com',
-    to: 'chanuthnilushan@gmail.com',
-    subject: 'test',
-    text: 'text',
-    attachments: [
-      {
-        filename: 'CHA05214.JPG', // Change the filename as needed
-        path: 'C:/Users/Chanuthp/Desktop/CHA05214.JPG', // Provide the correct path to your file
-        // You can also use a Buffer or a stream instead of a file path
-      },
-    ],
-  };
-
-  // Send email
-  await transporter.sendMail(mailOptions);
   res.status(200).json({ message: "Notification successful" });
 }
 
