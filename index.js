@@ -1,5 +1,6 @@
 const express = require('express');
 const loadRouters = require('./loadRoutes'); // Adjust the path accordingly
+const logger = require('./Helpers/logger');
 var { expressjwt: jwt } = require("express-jwt");
 const cors = require('cors');
 require('dotenv').config();
@@ -13,7 +14,10 @@ app.use(
     algorithms: ["HS256"],
   }).unless({ path: ["/api/login", "/api/jobs"] })
 );
- 
+app.use((req, res, next) => {
+  logger.info(`${req.method} ${req.url}`);
+  next();
+});
 
 loadRouters(app);
 
