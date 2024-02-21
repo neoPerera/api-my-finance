@@ -17,10 +17,12 @@
     "fs": "^0.0.1-security",
     "install": "^0.13.0",
     "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.9",
     "nodemon": "^3.0.3",
     "path": "^0.12.7",
     "pg": "^8.11.3",
     "pg-promise": "^11.5.4",
-    "socket.io-client": "^4.7.4"
+    "socket.io-client": "^4.7.4",
+    "winston": "^3.11.0"
   }
 }
